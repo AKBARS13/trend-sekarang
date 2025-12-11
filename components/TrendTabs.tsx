@@ -41,65 +41,29 @@ const YT_CATEGORIES = [
 ];
 
 const GOOGLE_DUMMY = [
-  { rank: 1, keyword: 'harga beras hari ini', note: 'Isu ekonomi harian, sering dicari menjelang gajian.' },
-  { rank: 2, keyword: 'kurs dolar hari ini', note: 'Dipantau pebisnis, traveler, dan yang belanja online luar negeri.' },
-  { rank: 3, keyword: 'jadwal timnas indonesia', note: 'Naik saat ada laga persahabatan atau turnamen besar.' },
-  { rank: 4, keyword: 'hasil liga 1 indonesia', note: 'Update skor pertandingan sepak bola lokal.' },
-  { rank: 5, keyword: 'jadwal sholat hari ini', note: 'Pencarian rutin harian di berbagai daerah.' },
+  { rank: 1, keyword: 'harga beras naik', note: 'Naik di banyak daerah, pengaruhi biaya hidup.' },
+  { rank: 2, keyword: 'harga cabai hari ini', note: 'Komoditas yang sering bikin inflasi melonjak.' },
+  { rank: 3, keyword: 'kurs dolar ke rupiah', note: 'Dipantau pebisnis dan yang belanja online luar negeri.' },
+  { rank: 4, keyword: 'bbm naik atau turun', note: 'Topik sensitif yang langsung terasa ke masyarakat.' },
+  { rank: 5, keyword: 'cuaca ekstrem hari ini', note: 'Warga cari info banjir dan potensi hujan lebat.' },
 
-  { rank: 6, keyword: 'cuaca hari ini', note: 'Ramai saat musim hujan atau cuaca ekstrem.' },
-  { rank: 7, keyword: 'gempa hari ini', note: 'Naik setiap ada info gempa baru dari BMKG.' },
-  { rank: 8, keyword: 'pendaftaran cpns 2025', note: 'Selalu trending saat rumor atau pembukaan formasi baru.' },
-  { rank: 9, keyword: 'gaji umr 2025', note: 'Dicari pekerja untuk cek upah minimal di kotanya.' },
-  { rank: 10, keyword: 'beasiswa kuliah luar negeri', note: 'Minat studi lanjut dan program beasiswa internasional.' },
+  { rank: 6, keyword: 'bmkg peringatan dini cuaca', note: 'Sumber info resmi untuk cuaca dan gelombang tinggi.' },
+  { rank: 7, keyword: 'pendaftaran cpns 2025', note: 'Selalu ramai tiap ada pengumuman formasi baru.' },
+  { rank: 8, keyword: 'gaji umr 2025 provinsi', note: 'Dicari pekerja untuk cek hak gaji minimal.' },
+  { rank: 9, keyword: 'bansos cair kapan', note: 'Informasi bantuan sosial dari pemerintah.' },
+  { rank: 10, keyword: 'kartu prakerja gelombang terbaru', note: 'Program pelatihan kerja yang diminati banyak orang.' },
 
-  { rank: 11, keyword: 'cara daftar kartu prakerja', note: 'Ramai setiap gelombang pendaftaran baru dibuka.' },
-  { rank: 12, keyword: 'cara cek bantuan sosial', note: 'Pencarian terkait program bantuan pemerintah.' },
-  { rank: 13, keyword: 'daftar bpjs kesehatan online', note: 'Pendaftaran dan layanan kesehatan nasional.' },
-  { rank: 14, keyword: 'sim online perpanjangan', note: 'Perpanjangan SIM tanpa datang ke kantor polisi.' },
-  { rank: 15, keyword: 'harga emas hari ini', note: 'Dipantau investor kecil dan toko perhiasan.' },
+  { rank: 11, keyword: 'cara daftar umkm online', note: 'Pelaku usaha kecil ingin legalitas dan akses bantuan.' },
+  { rank: 12, keyword: 'pinjol legal ojk', note: 'Mencari platform pinjaman yang aman dan resmi.' },
+  { rank: 13, keyword: 'investasi reksadana untuk pemula', note: 'Minat investasi naik di kalangan anak muda.' },
+  { rank: 14, keyword: 'saham bca hari ini', note: 'Saham bluechip yang sering dipantau investor.' },
+  { rank: 15, keyword: 'harga emas antam hari ini', note: 'Instrumen lindung nilai favorit banyak orang.' },
 
-  { rank: 16, keyword: 'saham bca hari ini', note: 'Contoh saham bluechip yang sering dipantau.' },
-  { rank: 17, keyword: 'bitcoin hari ini', note: 'Kripto masih jadi perhatian banyak orang.' },
-  { rank: 18, keyword: 'cara investasi reksadana', note: 'Pencarian pemula yang mau mulai investasi.' },
-  { rank: 19, keyword: 'cara nabung 1 juta per bulan', note: 'Topik perencanaan keuangan pribadi.' },
-  { rank: 20, keyword: 'aplikasi catatan keuangan gratis', note: 'Tools buat tracking pengeluaran harian.' },
-
-  { rank: 21, keyword: 'tutorial microsoft excel pemula', note: 'Skill kantoran paling banyak dicari.' },
-  { rank: 22, keyword: 'belajar bahasa inggris online gratis', note: 'Soft skill populer untuk pelajar dan pekerja.' },
-  { rank: 23, keyword: 'belajar coding untuk pemula', note: 'Naik terus seiring minat di industri IT.' },
-  { rank: 24, keyword: 'cara buat website sendiri', note: 'Pencarian umum untuk UMKM dan personal brand.' },
-  { rank: 25, keyword: 'cara bikin cv menarik', note: 'Dicari fresh graduate dan pencari kerja baru.' },
-
-  { rank: 26, keyword: 'contoh surat lamaran kerja', note: 'Salah satu keyword klasik di dunia kerja.' },
-  { rank: 27, keyword: 'pertanyaan interview kerja', note: 'Persiapan wawancara di berbagai perusahaan.' },
-  { rank: 28, keyword: 'cara nego gaji saat interview', note: 'Topik sensitif tapi sering dicari diam-diam.' },
-  { rank: 29, keyword: 'lowongan kerja remote indonesia', note: 'Naik setelah tren kerja dari rumah.' },
-  { rank: 30, keyword: 'pekerjaan freelance online', note: 'Alternatif penghasilan sampingan.' },
-
-  { rank: 31, keyword: 'obat batuk alami', note: 'Ramai saat musim pancaroba dan flu.' },
-  { rank: 32, keyword: 'cara turunkan berat badan', note: 'Topik kesehatan dan lifestyle yang abadi.' },
-  { rank: 33, keyword: 'menu diet sehat murah', note: 'Diet tapi tetap ramah kantong anak kos.' },
-  { rank: 34, keyword: 'olahraga di rumah tanpa alat', note: 'Populer sejak pandemi dan masih dicari.' },
-  { rank: 35, keyword: 'cara hilangkan jerawat', note: 'Permasalahan kulit paling sering dicari remaja.' },
-
-  { rank: 36, keyword: 'skincare routine remaja', note: 'Konten beauty yang terus naik di kalangan pelajar.' },
-  { rank: 37, keyword: 'drakor terbaru 2025', note: 'Drama Korea baru selalu masuk trending.' },
-  { rank: 38, keyword: 'film bioskop terbaru', note: 'Untuk cari referensi nonton akhir pekan.' },
-  { rank: 39, keyword: 'review iphone terbaru', note: 'Setiap rilis iPhone baru pasti ramai.' },
-  { rank: 40, keyword: 'hp gaming 2 jutaan terbaik', note: 'Segmen HP populer untuk pelajar dan gamer kasual.' },
-
-  { rank: 41, keyword: 'laptop untuk kuliah murah', note: 'Dicari mahasiswa baru dan orang tua.' },
-  { rank: 42, keyword: 'rekomendasi headset murah', note: 'Kebutuhan meeting online dan gaming.' },
-  { rank: 43, keyword: 'template undangan gratis', note: 'Untuk acara nikah, ulang tahun, dan lainnya.' },
-  { rank: 44, keyword: 'desain poster online canva', note: 'Desain cepat untuk tugas atau promosi.' },
-  { rank: 45, keyword: 'ide konten tiktok harian', note: 'Content creator pemula cari inspirasi.' },
-
-  { rank: 46, keyword: 'cara live tiktok di pc', note: 'Teknik live streaming dari komputer.' },
-  { rank: 47, keyword: 'cara jadi youtuber pemula', note: 'Banyak yang ingin mulai channel sendiri.' },
-  { rank: 48, keyword: 'cara menambah followers instagram', note: 'Topik populer di kalangan UMKM dan creator.' },
-  { rank: 49, keyword: 'wisata murah dekat jakarta', note: 'Rencana short trip akhir pekan.' },
-  { rank: 50, keyword: 'promo tiket pesawat hari ini', note: 'Perjalanan liburan dan mudik.' },
+  { rank: 16, keyword: 'belajar coding gratis', note: 'Skill digital yang makin dibutuhkan di dunia kerja.' },
+  { rank: 17, keyword: 'kursus online ui ux desain', note: 'Minat ke dunia desain produk digital meningkat.' },
+  { rank: 18, keyword: 'kerja remote luar negeri', note: 'Keinginan gaji dolar sambil kerja dari Indonesia.' },
+  { rank: 19, keyword: 'cara jadi content creator tiktok', note: 'Banyak yang ingin bangun personal brand dan penghasilan.' },
+  { rank: 20, keyword: 'dompet digital cashback terbaru', note: 'Promo pembayaran pakai e-wallet yang diburu pengguna.' },
 ];
 
 function formatViews(views: string) {
@@ -355,7 +319,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
           </div>
         )}
 
-        {/* TAB: GOOGLE TRENDS */}
+                {/* TAB: GOOGLE TRENDS */}
         {activeTab === 'google' && (
           <div className="bg-zinc-900 rounded-xl border border-zinc-800">
             <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800 text-xs text-zinc-400">
@@ -371,30 +335,46 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
             </div>
 
             <div className="p-4 space-y-3">
-              {GOOGLE_DUMMY.map((item) => (
-                <div
-                  key={item.rank}
-                  className="flex items-center justify-between p-3
-                             bg-zinc-950 rounded-lg border border-zinc-800"
-                >
-                  <div className="flex items-center gap-4">
-                    <span
-                      className={`text-2xl font-bold ${
-                        item.rank <= 3 ? 'text-green-500' : 'text-zinc-500'
-                      }`}
+              {GOOGLE_DUMMY.map((item) => {
+                // URL Google Search untuk keyword ini
+                const searchUrl =
+                  'https://www.google.com/search?q=' +
+                  encodeURIComponent(item.keyword + ' tren Indonesia');
+
+                return (
+                  <a
+                    key={item.rank}
+                    href={searchUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block"
+                  >
+                    <div
+                      className="flex items-center justify-between p-3
+                                 bg-zinc-950 rounded-lg border border-zinc-800
+                                 hover:bg-zinc-900 hover:border-zinc-700
+                                 transition-colors"
                     >
-                      {item.rank}
-                    </span>
-                    <div>
-                      <p className="font-medium flex items-center gap-2">
-                        <span>🔍</span>
-                        <span>{item.keyword}</span>
-                      </p>
-                      <p className="text-xs text-zinc-500">{item.note}</p>
+                      <div className="flex items-center gap-4">
+                        <span
+                          className={`text-2xl font-bold ${
+                            item.rank <= 3 ? 'text-green-500' : 'text-zinc-500'
+                          }`}
+                        >
+                          {item.rank}
+                        </span>
+                        <div>
+                          <p className="font-medium flex items-center gap-2">
+                            <span>🔍</span>
+                            <span>{item.keyword}</span>
+                          </p>
+                          <p className="text-xs text-zinc-500">{item.note}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}
