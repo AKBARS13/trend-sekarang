@@ -9,13 +9,19 @@ type NewsResponse = {
   updatedAt?: string;
 };
 
+// Base URL beda antara dev & production (Vercel)
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? `https://${process.env.VERCEL_URL}` // misal: https://trend-sekarang.vercel.app
+    : 'http://localhost:3000';
+
 async function getNewsTrends(): Promise<NewsResponse> {
-  const res = await fetch('http://localhost:3000/api/trends/news', {
-    cache: 'no-store', // tiap refresh ambil data baru
+  const res = await fetch(`${baseUrl}/api/trends/news`, {
+    cache: 'no-store',
   });
 
   if (!res.ok) {
-    throw new Error('Gagal ambil data berita');
+    throw new Error(`Gagal ambil data berita (status ${res.status})`);
   }
 
   const data = (await res.json()) as NewsResponse;
@@ -52,7 +58,7 @@ export default async function Home() {
         <TrendTabs newsTrends={trends} />
 
         {/* Live poll */}
-        <LivePoll/>
+        <LivePoll />
       </div>
     </main>
   );
