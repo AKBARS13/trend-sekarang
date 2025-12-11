@@ -263,11 +263,11 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
             >
               <span>Filter kategori</span>
               <span
-                className={`transition-transform text-[10px] ${
+                className={`transition-transform text-[17px] ${
                   showCategoryBar ? 'rotate-90' : ''
                 }`}
               >
-                ▶
+               ▸
               </span>
             </button>
 
