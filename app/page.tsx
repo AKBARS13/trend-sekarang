@@ -12,7 +12,7 @@ type NewsResponse = {
 // Base URL beda antara dev & production (Vercel)
 const baseUrl =
   process.env.NODE_ENV === 'production'
-    ? `https://${process.env.VERCEL_URL}` // misal: https://trend-sekarang.vercel.app
+    ? 'https://trend-sekarang.vercel.app' // domain vercel kamu
     : 'http://localhost:3000';
 
 async function getNewsTrends(): Promise<NewsResponse> {
