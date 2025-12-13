@@ -25,45 +25,177 @@ type YoutubeVideo = {
   thumbnail?: string;
 };
 
+type GameItem = {
+  rank: number;
+  name: string;
+  type: string;
+  note: string;
+  image: string; // URL gambar online
+};
+
 const tabs = [
   { id: 'news', label: 'Berita' },
   { id: 'youtube', label: 'YouTube Trending' },
   { id: 'google', label: 'Google Trends' },
+  { id: 'games', label: 'Game Viral' },
 ];
 
 const YT_CATEGORIES = [
-  { id: 'all', label: 'Semua' }, // tanpa filter kategori
-  { id: '10', label: 'Musik' }, // Music
-  { id: '20', label: 'Game' }, // Gaming
-  { id: '24', label: 'Hiburan' }, // Entertainment
-  { id: '17', label: 'Olahraga' }, // Sports
-  { id: '25', label: 'Berita & Politik' } // News & Politics
+  { id: 'all', label: 'Semua' },
+  { id: '10', label: 'Musik' },
+  { id: '20', label: 'Game' },
+  { id: '24', label: 'Hiburan' },
+  { id: '17', label: 'Olahraga' },
+  { id: '25', label: 'Berita & Politik' },
 ];
 
 const GOOGLE_DUMMY = [
-  { rank: 1, keyword: 'harga beras naik', note: 'Naik di banyak daerah, pengaruhi biaya hidup.' },
-  { rank: 2, keyword: 'harga cabai hari ini', note: 'Komoditas yang sering bikin inflasi melonjak.' },
-  { rank: 3, keyword: 'kurs dolar ke rupiah', note: 'Dipantau pebisnis dan yang belanja online luar negeri.' },
-  { rank: 4, keyword: 'bbm naik atau turun', note: 'Topik sensitif yang langsung terasa ke masyarakat.' },
-  { rank: 5, keyword: 'cuaca ekstrem hari ini', note: 'Warga cari info banjir dan potensi hujan lebat.' },
+  { rank: 1, keyword: 'Harga beras naik', note: 'Naik di banyak daerah, pengaruhi biaya hidup.' },
+  { rank: 2, keyword: 'Harga cabai hari ini', note: 'Komoditas yang sering bikin inflasi melonjak.' },
+  { rank: 3, keyword: 'Kurs dolar ke rupiah', note: 'Dipantau pebisnis dan yang belanja luar negeri.' },
+  { rank: 4, keyword: 'Bbm naik atau turun', note: 'Topik sensitif yang langsung terasa ke masyarakat.' },
+  { rank: 5, keyword: 'Cuaca ekstrem hari ini', note: 'Warga cari info banjir dan potensi hujan lebat.' },
 
-  { rank: 6, keyword: 'bmkg peringatan dini cuaca', note: 'Sumber info resmi untuk cuaca dan gelombang tinggi.' },
-  { rank: 7, keyword: 'pendaftaran cpns 2025', note: 'Selalu ramai tiap ada pengumuman formasi baru.' },
-  { rank: 8, keyword: 'gaji umr 2025 provinsi', note: 'Dicari pekerja untuk cek hak gaji minimal.' },
-  { rank: 9, keyword: 'bansos cair kapan', note: 'Informasi bantuan sosial dari pemerintah.' },
-  { rank: 10, keyword: 'kartu prakerja gelombang terbaru', note: 'Program pelatihan kerja yang diminati banyak orang.' },
+  { rank: 6, keyword: 'Bmkg peringatan dini cuaca', note: 'Sumber info resmi soal cuaca dan gelombang tinggi.' },
+  { rank: 7, keyword: 'Pendaftaran cpns 2025', note: 'Selalu ramai tiap ada pengumuman formasi baru.' },
+  { rank: 8, keyword: 'Gaji umr 2025 provinsi', note: 'Dicari pekerja untuk cek hak gaji minimal.' },
+  { rank: 9, keyword: 'Bansos cair kapan', note: 'Info pencairan bantuan sosial pemerintah.' },
+  { rank: 10, keyword: 'Kartu prakerja gelombang terbaru', note: 'Program pelatihan kerja yang diminati banyak orang.' },
 
-  { rank: 11, keyword: 'cara daftar umkm online', note: 'Pelaku usaha kecil ingin legalitas dan akses bantuan.' },
-  { rank: 12, keyword: 'pinjol legal ojk', note: 'Mencari platform pinjaman yang aman dan resmi.' },
-  { rank: 13, keyword: 'investasi reksadana untuk pemula', note: 'Minat investasi naik di kalangan anak muda.' },
-  { rank: 14, keyword: 'saham bca hari ini', note: 'Saham bluechip yang sering dipantau investor.' },
-  { rank: 15, keyword: 'harga emas antam hari ini', note: 'Instrumen lindung nilai favorit banyak orang.' },
+  { rank: 11, keyword: 'Cara daftar umkm online', note: 'Pelaku usaha kecil ingin legalitas dan akses bantuan.' },
+  { rank: 12, keyword: 'Pinjol legal ojk', note: 'Mencari platform pinjaman yang aman dan resmi.' },
+  { rank: 13, keyword: 'Investasi reksadana untuk pemula', note: 'Minat investasi naik di kalangan anak muda.' },
+  { rank: 14, keyword: 'Saham bca hari ini', note: 'Saham bluechip yang sering dipantau investor.' },
+  { rank: 15, keyword: 'Harga emas antam hari ini', note: 'Instrumen lindung nilai favorit.' },
 
-  { rank: 16, keyword: 'belajar coding gratis', note: 'Skill digital yang makin dibutuhkan di dunia kerja.' },
-  { rank: 17, keyword: 'kursus online ui ux desain', note: 'Minat ke dunia desain produk digital meningkat.' },
-  { rank: 18, keyword: 'kerja remote luar negeri', note: 'Keinginan gaji dolar sambil kerja dari Indonesia.' },
-  { rank: 19, keyword: 'cara jadi content creator tiktok', note: 'Banyak yang ingin bangun personal brand dan penghasilan.' },
-  { rank: 20, keyword: 'dompet digital cashback terbaru', note: 'Promo pembayaran pakai e-wallet yang diburu pengguna.' },
+  { rank: 16, keyword: 'Belajar coding gratis', note: 'Skill digital yang makin dibutuhkan di dunia kerja.' },
+  { rank: 17, keyword: 'Kursus online ui ux design', note: 'Minat desain produk digital meningkat.' },
+  { rank: 18, keyword: 'Kerja remote luar negeri', note: 'Keinginan gaji dolar sambil kerja dari Indonesia.' },
+  { rank: 19, keyword: 'Kara jadi content creator tiktok', note: 'Banyak yang ingin bangun personal brand.' },
+  { rank: 20, keyword: 'Kompet digital cashback terbaru', note: 'Promo e-wallet yang diburu pengguna.' },
+];
+
+const GAME_TRENDS: GameItem[] = [
+  {
+    rank: 1,
+    name: 'GTA 6 (Grand Theft Auto VI)',
+    type: 'Open-world, Action',
+    note: 'Trailer dan hype global, jadi bahan pembicaraan di mana-mana.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png',
+  },
+  {
+    rank: 2,
+    name: 'Mobile Legends: Bang Bang',
+    type: 'MOBA (Mobile)',
+    note: 'Masih jadi salah satu game mobile paling ramai di Indonesia.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/0/0f/Mobile_Legends_Bang_Bang_logo.png',
+  },
+  {
+    rank: 3,
+    name: 'Valorant',
+    type: 'FPS (PC)',
+    note: 'Esports aktif, banyak turnamen lokal dan internasional.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/5/5f/Valorant_cover_art.jpg',
+  },
+  {
+    rank: 4,
+    name: 'PUBG Mobile',
+    type: 'Battle Royale (Mobile)',
+    note: 'Turnamen rutin dan player aktif besar di Asia.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/2/20/PlayerUnknown%27s_Battlegrounds_Steam_Logo.jpg',
+  },
+  {
+    rank: 5,
+    name: 'Roblox',
+    type: 'Platform game & creation',
+    note: 'Digemari anak-anak dan remaja, banyak mini-game viral.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/1/16/Roblox_Logo_2022.svg',
+  },
+  {
+    rank: 6,
+    name: 'Genshin Impact',
+    type: 'Action RPG (Multi-platform)',
+    note: 'Banyak update karakter & event kolaborasi.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/4/4a/Genshin_Impact_cover.jpg',
+  },
+  {
+    rank: 7,
+    name: 'Free Fire',
+    type: 'Battle Royale (Mobile)',
+    note: 'Basis pemain kuat di Indonesia & Amerika Latin.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/0/0e/Garena_Free_Fire_logo.png',
+  },
+  {
+    rank: 8,
+    name: 'EA FC 25 (FIFA)',
+    type: 'Sports, Sepak bola',
+    note: 'Selalu rame tiap musim baru dimulai.',
+    image:
+      'https://images.ea.com/ea/ea-sports-fc/ea-sports-fc-25-share-image.jpg',
+  },
+  {
+    rank: 9,
+    name: 'Minecraft',
+    type: 'Sandbox, Survival',
+    note: 'Konten kreator dan server roleplay terus bikin game ini hidup.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png',
+  },
+  {
+    rank: 10,
+    name: 'Honkai: Star Rail',
+    type: 'Turn-based RPG',
+    note: 'Game dari miHoYo yang lagi naik di komunitas anime/gacha.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/4/44/Honkai_Star_Rail_key_art.jpg',
+  },
+  {
+    rank: 11,
+    name: 'Fortnite',
+    type: 'Battle Royale (Multi-platform)',
+    note: 'Sering kolaborasi dengan film, artis, dan IP besar.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/0/0e/Fortnite_Square_Logo.png',
+  },
+  {
+    rank: 12,
+    name: 'Call of Duty: Warzone',
+    type: 'FPS Battle Royale',
+    note: 'Mode baru dan update map bikin player balik lagi.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/en/d/d9/Call_of_Duty_Warzone_Logo.jpg',
+  },
+  {
+    rank: 13,
+    name: 'Stumble Guys',
+    type: 'Party game (Mobile)',
+    note: 'Masih sering nongol di TikTok & YouTube short.',
+    image:
+      'https://play-lh.googleusercontent.com/uFid1OnE8xZ4G4uxw74iGay6mju6GtUrQPw1TvTADHGFdcowAB7ZK-f0E38xYQkjAik',
+  },
+  {
+    rank: 14,
+    name: 'Arena of Valor (AOV)',
+    type: 'MOBA (Mobile)',
+    note: 'Skena kompetitif masih aktif di beberapa negara.',
+    image:
+      'https://play-lh.googleusercontent.com/2dDrimKETmYHobGp7LVe4VMJHNXJYdyWIoUDXqig6K2nIpSo-sdauuHlKCCxt3QBDOI',
+  },
+  {
+    rank: 15,
+    name: 'Clash of Clans',
+    type: 'Strategy (Mobile)',
+    note: 'Game lama yang masih punya komunitas loyal.',
+    image:
+      'https://play-lh.googleusercontent.com/0P4t6l9JO0GtQXl3k5qVvP-yfaS-ksye-GHtAWx4i01wcAoWZd1mgZD1db8KQJ12yA',
+  },
 ];
 
 function formatViews(views: string) {
@@ -80,9 +212,9 @@ function formatViews(views: string) {
 }
 
 export function TrendTabs({ newsTrends }: TrendTabsProps) {
-  const [activeTab, setActiveTab] = useState<'news' | 'youtube' | 'google'>(
-    'news'
-  );
+  const [activeTab, setActiveTab] = useState<
+    'news' | 'youtube' | 'google' | 'games'
+  >('news');
 
   const [ytVideos, setYtVideos] = useState<YoutubeVideo[]>([]);
   const [ytLoading, setYtLoading] = useState(false);
@@ -90,7 +222,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
   const [ytCategory, setYtCategory] = useState<
     'all' | '10' | '20' | '24' | '17' | '25'
   >('all');
-   const [showCategoryBar, setShowCategoryBar] = useState(false);
+  const [showCategoryBar, setShowCategoryBar] = useState(false);
 
   // FETCH YOUTUBE TRENDING
   useEffect(() => {
@@ -154,7 +286,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
     fetchTrending();
   }, [activeTab, ytCategory]);
 
-    return (
+  return (
     <section className="mt-4">
       {/* Tombol Tab */}
       <div className="flex gap-2 mb-4">
@@ -192,7 +324,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
               >
                 <div className="flex items-center gap-4">
                   <span
-                    className={`text-2xl font-bold ${
+                    className={`text-2xl font-bold w-8 text-right ${
                       index < 3 ? 'text-orange-500' : 'text-zinc-500'
                     }`}
                   >
@@ -231,7 +363,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
                   showCategoryBar ? 'rotate-90' : ''
                 }`}
               >
-               ▸
+                ▸
               </span>
             </button>
 
@@ -291,7 +423,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
                 >
                   <div className="flex items-center gap-4">
                     <span
-                      className={`text-2xl font-bold ${
+                      className={`text-2xl font-bold w-8 text-right ${
                         video.rank <= 3 ? 'text-red-500' : 'text-zinc-500'
                       }`}
                     >
@@ -319,7 +451,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
           </div>
         )}
 
-                {/* TAB: GOOGLE TRENDS */}
+        {/* TAB: GOOGLE TRENDS */}
         {activeTab === 'google' && (
           <div className="bg-zinc-900 rounded-xl border border-zinc-800">
             <div className="flex items-center justify-between px-4 py-2 border-b border-zinc-800 text-xs text-zinc-400">
@@ -336,7 +468,6 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
 
             <div className="p-4 space-y-3">
               {GOOGLE_DUMMY.map((item) => {
-                // URL Google Search untuk keyword ini
                 const searchUrl =
                   'https://www.google.com/search?q=' +
                   encodeURIComponent(item.keyword + ' tren Indonesia');
@@ -357,7 +488,7 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
                     >
                       <div className="flex items-center gap-4">
                         <span
-                          className={`text-2xl font-bold ${
+                          className={`text-2xl font-bold w-8 text-right ${
                             item.rank <= 3 ? 'text-green-500' : 'text-zinc-500'
                           }`}
                         >
@@ -376,6 +507,67 @@ export function TrendTabs({ newsTrends }: TrendTabsProps) {
                 );
               })}
             </div>
+          </div>
+        )}
+
+        {/* TAB: GAME VIRAL */}
+        {activeTab === 'games' && (
+          <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4 space-y-3">
+            {GAME_TRENDS.map((game) => {
+              const searchUrl =
+                'https://www.google.com/search?q=' +
+                encodeURIComponent(game.name + ' game');
+
+              return (
+                <a
+                  key={game.rank}
+                  href={searchUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block"
+                >
+                  <div
+                    className="flex items-center justify-between p-3
+                               bg-zinc-950 rounded-lg border border-zinc-800
+                               hover:bg-zinc-900 hover:border-zinc-700
+                               transition-colors"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span
+                        className={`text-2xl font-bold w-8 text-right ${
+                          game.rank <= 3
+                            ? 'text-purple-400'
+                            : 'text-zinc-500'
+                        }`}
+                      >
+                        {game.rank}
+                      </span>
+
+                      <img
+                        src={game.image}
+                        alt={game.name}
+                        className="w-10 h-10 rounded-md object-cover bg-zinc-800"
+                        onError={(e) => {
+                          // kalau gagal load gambar, pakai icon controller default
+                          e.currentTarget.onerror = null; // hindari loop
+                          e.currentTarget.src =
+                            'https://img.icons8.com/fluency/48/ffffff/controller.png';
+                        }}
+                      />
+
+                      <div>
+                        <p className="font-medium flex items-center gap-2">
+                          <span>🎮</span>
+                          <span>{game.name}</span>
+                        </p>
+                        <p className="text-xs text-zinc-400">{game.type}</p>
+                        <p className="text-xs text-zinc-500">{game.note}</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         )}
       </div>
